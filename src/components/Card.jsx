@@ -2,7 +2,6 @@
 import { useRef } from 'react';
 import { useDrop, useDrag } from "react-dnd";
 
-// eslint-disable-next-line no-unused-vars
 const Card = ({ id, tag, src, index, moveImage }) => {
   const ref = useRef(null); 
   
@@ -17,7 +16,7 @@ const Card = ({ id, tag, src, index, moveImage }) => {
       const hoverIndex = index;
       
       if (dragIndex === hoverIndex) {
-                  return;
+        return;
       }
       const hoverBoundingRect = ref.current?.getBoundingClientRect();
       const hoverMiddleY = (hoverBoundingRect.bottom - hoverBoundingRect.top) / 2;
@@ -26,11 +25,11 @@ const Card = ({ id, tag, src, index, moveImage }) => {
       const hoverClientY = clientOffset.y - hoverBoundingRect.top;
       
       if (dragIndex < hoverIndex && hoverClientY < hoverMiddleY) {
-          return;
+        return;
       }
       
       if (dragIndex > hoverIndex && hoverClientY > hoverMiddleY) {
-          return;
+        return;
       }
       
       moveImage(dragIndex, hoverIndex);
@@ -57,9 +56,9 @@ const Card = ({ id, tag, src, index, moveImage }) => {
   drag(drop(ref));
 
   return (
-    <div ref={ref} style={{ opacity }} className="my-2 p-2 text-center">
-      <img src={src} alt={tag} width={400} height={400} className="object-cover h-full" />
-      <p>{tag}</p>
+    <div ref={ref} style={{ opacity }} className="flex flex-col items-center text-center border-2 border-gray-200 rounded-2xl transform hover:sca hover:scale-105 transition ease-out duration-300 overflow-hidden">
+      <img src={src} alt={tag} width={400} height={400} className="object-cover w-full h-full" />
+      <p className="py-2 text-lg font-bold">{tag}</p>
     </div>
   );
 };

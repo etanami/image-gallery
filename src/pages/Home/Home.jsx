@@ -16,7 +16,7 @@ const Home = () => {
   }, []);
 
   return (
-    <div className="grid grid-cols-4 gap-4">
+    <div className="p-8 grid md:grid-cols-2 lg:grid-cols-4 gap-3 md:gap-8 max-w-[1440px] mx-auto">
       {images.map((image, index) => (
         <Card
           key={image.id}
