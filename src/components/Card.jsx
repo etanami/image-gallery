@@ -56,7 +56,7 @@ const Card = ({ id, tag, src, index, moveImage }) => {
   drag(drop(ref));
 
   return (
-    <div ref={ref} style={{ opacity }} className="flex flex-col items-center text-center border-2 border-gray-200 rounded-2xl transform hover:sca hover:scale-105 transition ease-out duration-300 overflow-hidden">
+    <div ref={ref} style={{ opacity }} className="card">
       <img src={src} alt={tag} width={400} height={400} className="object-cover w-full h-full" />
       <p className="py-2 text-lg font-bold">{tag}</p>
     </div>
