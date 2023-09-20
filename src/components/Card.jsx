@@ -1,9 +1,11 @@
 /* eslint-disable react/prop-types */
+import { useAuth0 } from '@auth0/auth0-react';
 import { useRef } from 'react';
 import { useDrop, useDrag } from "react-dnd";
 
 const Card = ({ id, tag, src, index, moveImage, isLoading }) => {
-  const ref = useRef(null); 
+  const ref = useRef(null);
+  const { isAuthenticated } = useAuth0();
   
   // define the drop area
   const [, drop] = useDrop({
@@ -38,17 +40,18 @@ const Card = ({ id, tag, src, index, moveImage, isLoading }) => {
     }
   });
 
-  // define the drag area
+  // define the drag area , but only allow dragging when authenticated
   const [{ isDragging }, drag] = useDrag({
     type: "image",
     item: () => {
       return { id, index };
     },
-    collect: (monitor) => {
-      return {
-        isDragging: monitor.isDragging()
-      };
-    }
+    canDrag: isAuthenticated,
+    // collect: (monitor) => {
+    //   return {
+    //     isDragging: monitor.isDragging()
+    //   };
+    // }
   });
         
   // useDrag component  
