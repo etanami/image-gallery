@@ -1,10 +1,20 @@
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import Card from "../../components/Card";
 import imageList from "../../imagesData"
 import SearchBar from "../../components/SearchBar";
 
 const Home = () => {
   const [images, setImages] = useState(imageList);
+  const [isLoading, setIsLoading] = useState(true);
+
+  // simulating a half second loading delay because i'm using local data
+  // instead of fetching
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 500);
+  }, []);
+  
 
   // search card components from user input
   const getSearch = (searchTag) => {
@@ -36,6 +46,7 @@ const Home = () => {
             id={image.id}
             index={index}
             moveImage={moveImage}
+            isLoading={isLoading}
           />
         ))}
       </div>
