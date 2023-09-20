@@ -2,6 +2,7 @@ import { useState, useCallback, useEffect } from "react";
 import Card from "../../components/Card";
 import imageList from "../../imagesData"
 import SearchBar from "../../components/SearchBar";
+import AuthButton from "../../components/AuthButton";
 
 const Home = () => {
   const [images, setImages] = useState(imageList);
@@ -36,6 +37,7 @@ const Home = () => {
 
   return (
     <div className="p-8 max-w-[1440px] mx-auto">
+      <AuthButton />
       <SearchBar getSearch={getSearch} />
       <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
         {images.map((image, index) => (
